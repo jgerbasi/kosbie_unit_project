@@ -14,6 +14,13 @@ var categories;
 // Helper functions
 ///////////
 
+// task_id is index of task in array
+// completed is either true or false
+function set_completed(task_id, completed)
+{
+  edit_task(task_id, undefined, undefined, undefined, undefined, undefined, completed);
+}
+
 function get_tasks_by_category_id(category_id)
 {
   var tasks_array = [];
