@@ -59,7 +59,7 @@ app.put("/tasks/:id", function(request, response){
   var oldTask = tasks[id];
                
   var newTask = {"name": request.body.name,
-                 "category_id": request.body.category_id,
+                 "category_id": request.body.category_id, // id is index into categories array
                  "time_estimate": request.body.time_estimate,
                  "time_spent": request.body.time_spent,
                  "time_chunks": JSON.parse(request.body.time_chunks) // store time chunks in seconds
