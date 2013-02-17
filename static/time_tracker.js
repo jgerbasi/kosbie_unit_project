@@ -10,6 +10,26 @@
 var tasks;
 var categories;
 
+///////////
+// Helper functions
+///////////
+
+function get_tasks_by_category_id(category_id)
+{
+  var tasks_array = [];
+  
+  for (var task in tasks)
+  {
+    if (task.category_id === category_id)
+      tasks_array.push(task);
+  }
+  return tasks_array;
+}
+
+function get_category_name(category_id)
+{
+  return categories[category_id].name;
+}
 
 
 
@@ -24,23 +44,12 @@ function get_tasks() {
     url: "/tasks",
     success: function(data) {
       tasks = data.tasks;
-
-      refreshDOM();
     }
   });
 }
 
 
-var task = {"name": request.body.name,
-            "category_id": request.body.category_id,
-            "time_estimate": request.body.time_estimate,
-            "time_spent": 0,
-            "time_chunks": [] // store time chunks in seconds
-            "completed": false };
-
-
-// Implement the add(desc, author, price) function
-function add(name, category_id, time_estimate, time_spent, time_chunks, completed) {
+function add_task(name, category_id, time_estimate, time_spent, time_chunks, completed) {
   $.ajax({
     type: "post",
     data: {"name": name,
@@ -51,42 +60,102 @@ function add(name, category_id, time_estimate, time_spent, time_chunks, complete
            "completed": completed},
     url: "/tasks",
     success: function(data) { 
-      if (data.item !== undefined)
+      if (data.task !== undefined)
       {
-        listings.push(data.item);
+        tasks.push(data.task);
         refreshDOM();
       }
     }
   });
 }
 
-function edit(id, desc, author, price, sold) {
+
+function edit_task(id, name, category_id, time_estimate, time_spent, time_chunks, completed) {
   $.ajax({
     type: "put",
-    data: {desc: desc, author: author, price: price, sold: sold},
-    url: "/listings/" + id,
-    success: function(data) { }
-  });
-}
-
-function del(id) {
-  $.ajax({
-    type: "delete",
-    url: "/listings/" + id,
-    success: function(data) { 
-      //console.log(data);
+    data: {"name": name,
+           "category_id": category_id,
+           "time_estimate": time_estimate,
+           "time_spent": time_spent,
+           "time_chunks": time_chunks,
+           "completed": completed},
+    url: "/tasks/" + id,
+    success: function(data) {
+      if (data.task !== undefined)
+      {
+        tasks[id] = data.task;
+        refreshDOM();
+      }
+      
     }
   });
 }
 
-function delAll() {
+
+// We don't support deleting now...
+
+// function del(id) {
+//   $.ajax({
+//     type: "delete",
+//     url: "/listings/" + id,
+//     success: function(data) { 
+//       //console.log(data);
+//     }
+//   });
+// }
+
+
+
+///////////
+// AJAX requests for Categories
+///////////
+
+function get_categories() {
   $.ajax({
-    type: "delete",
-    url: "/listings",
-    success: function(data) { }
+    type: "get",
+    url: "/categories",
+    success: function(data) {
+      categories = data.categories;
+    }
   });
 }
 
+
+function add_category(name) {
+  $.ajax({
+    type: "post",
+    data: {"name": name},
+    url: "/categories",
+    success: function(data) { 
+      if (data.category !== undefined)
+      {
+        categories.push(data.category);
+        refreshDOM();
+      }
+    }
+  });
+}
+
+
+function edit_category(id, name) {
+  $.ajax({
+    type: "put",
+    data: {"name": name},
+    url: "/categories/" + id,
+    success: function(data) {
+      if (data.category !== undefined)
+      {
+        categories[id] = data.category;
+        refreshDOM();
+      }
+    }
+  });
+}
+
+
+
 $(document).ready(function() {
-  get();
+  get_categories();
+  get_tasks();
+  refreshDOM();
 });

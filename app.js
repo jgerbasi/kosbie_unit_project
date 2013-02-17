@@ -62,7 +62,7 @@ app.put("/tasks/:id", function(request, response){
                  "category_id": request.body.category_id, // id is index into categories array
                  "time_estimate": request.body.time_estimate,
                  "time_spent": request.body.time_spent,
-                 "time_chunks": JSON.parse(request.body.time_chunks) // store time chunks in seconds
+                 "time_chunks": JSON.parse(request.body.time_chunks), // store time chunks in seconds
                  "completed": JSON.parse(request.body.completed) 
                  };
                  
@@ -101,7 +101,7 @@ app.post("/tasks", function(request, response) {
               "category_id": request.body.category_id,
               "time_estimate": request.body.time_estimate,
               "time_spent": 0,
-              "time_chunks": [] // store time chunks in seconds
+              "time_chunks": [], // store time chunks in seconds
               "completed": false };
               
   tasks.push(task);
