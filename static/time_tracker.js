@@ -38,6 +38,18 @@ function get_category_name(category_id)
   return categories[category_id].name;
 }
 
+// returns top 5 tasks in terms of time_spent within a
+// given category
+function get_top_tasks_in_category(category_id)
+{
+  var category_tasks = get_tasks_by_category_id(category_id);
+  category_tasks.sort(function(a,b) {
+    return b.time_spent - a.time_spent
+    });
+  category_tasks.splice(5);
+  return category_tasks;
+}
+
 
 
 ///////////
