@@ -7,9 +7,15 @@
   </head>
 
   <body>
-    <form id="task-form">
+  	<div class="wrapper">
+  		<div class="banner"></div>
+    	<form id="task-form">
         <input id="add" name="add" type="text" placeholder="Add a task ..." class="add-task" />
+        <label for="hour">Estimated Completion Time :</label>
+        <input id="hour" name="hour" type="text" placeholder="Hour" class="time" />
+        <input id="min" name="min" type="text" placeholder="Min" class="time" />
       </form>
+    </div>
 
 
     <script src="jquery-1.9.0.js"></script>
