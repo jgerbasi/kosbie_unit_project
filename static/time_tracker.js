@@ -44,11 +44,50 @@ function get_top_tasks_in_category(category_id)
 {
   var category_tasks = get_tasks_by_category_id(category_id);
   category_tasks.sort(function(a,b) {
-    return b.time_spent - a.time_spent
+    return b.time_spent - a.time_spent;
     });
   category_tasks.splice(5);
   return category_tasks;
 }
+
+
+// returns array of top categories
+// in format : [[1, 400], [4, 200], [3, 100]]
+// category id is idx 0, total minutes is idx 1
+function get_top_categories()
+{
+  // key will be category id, value will be summation of time_spent for the category
+  var category_time_map = {};
+  for (var i = 0; i < tasks.length; i++)
+  {
+    var thisCategoryId = tasks_copy[i].category_id;
+    var thisTimeSpent = tasks_copy[i].time_spent;
+    var summedTime = category_time_map[thisCategoryId];
+    if (summedTime === undefined)
+      summedTime = 0;
+    summedTime += thisTimeSpent;
+    
+  }
+  
+  // let's insert the key, value pairs from object into an array
+  // like so:
+  // {3:405, 4:500} => [[3,405], [4,500]]
+  category_time_arr = [];
+  for (var key in category_time_map)
+  {
+    var thisPar = [key, category_time_map[key]];
+    category_time_arr.push(thisPair);
+  }
+  
+  // now let's sort the array
+  category_time_arr.sort(function(a,b) {
+    return b[1] - a[1];
+    });
+  category_time_arr.splice(5);
+  return category_time_arr;
+
+}
+
 
 
 
