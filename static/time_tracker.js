@@ -43,6 +43,7 @@ function get_category_name(category_id)
 function get_top_tasks_in_category(category_id)
 {
   var category_tasks = get_tasks_by_category_id(category_id);
+  // sort array (high to low)
   category_tasks.sort(function(a,b) {
     return b.time_spent - a.time_spent;
     });
@@ -75,11 +76,11 @@ function get_top_categories()
   category_time_arr = [];
   for (var key in category_time_map)
   {
-    var thisPar = [key, category_time_map[key]];
+    var thisPair = [key, category_time_map[key]];
     category_time_arr.push(thisPair);
   }
   
-  // now let's sort the array
+  // now let's sort the array (high to low)
   category_time_arr.sort(function(a,b) {
     return b[1] - a[1];
     });
