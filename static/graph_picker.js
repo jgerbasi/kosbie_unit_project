@@ -63,9 +63,12 @@ function addTaskToGraph(task_id)
 
 function removeTaskFromGraph(task_id)
 {
-  
+  task_id = parseInt(task_id);
   $('li[value=' + task_id + ']').remove();
-  graph_tasks.splice(task_id, 1);
+  console.log(task_id);
+  
+  var idx = graph_tasks.indexOf(task_id);
+  graph_tasks.splice(idx, 1);
   
   // TODO call function here to refresh graph view.
 }
