@@ -65,7 +65,6 @@ function removeTaskFromGraph(task_id)
 {
   task_id = parseInt(task_id);
   $('li[value=' + task_id + ']').remove();
-  console.log(task_id);
   
   var idx = graph_tasks.indexOf(task_id);
   graph_tasks.splice(idx, 1);
