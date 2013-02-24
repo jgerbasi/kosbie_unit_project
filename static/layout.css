@@ -25,7 +25,7 @@ body {
   margin-right: auto;
 }
 
-#dropdown {
+#task-dropdown {
   display: block;
   float: left;
   width: 200px;
@@ -114,4 +114,8 @@ label {
   box-sizing: border-box;
   width: 20%;
   margin-bottom: 10px;
+}
+
+#cat-dropdown {
+  
 }

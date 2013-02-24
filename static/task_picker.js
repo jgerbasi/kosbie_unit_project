@@ -1,10 +1,9 @@
-var s = $("#dropdown");
+var t = $("#task-dropdown");
 
-$('<option />', {value: -1, text: 'Select a task ...'}).appendTo(s);
+$('<option />', {value: -1, text: 'Select a task ...'}).appendTo(t);
 
 for(var val in tasks) {
-    console.log(tasks);
-    $('<option />', {value: val, text: tasks[val].name}).appendTo(s);
+    $('<option />', {value: val, text: tasks[val].name}).appendTo(t);
 }
 
 $(document).ready(function() {
@@ -27,3 +26,14 @@ function stop_timer() {
     $('#start').css("background-color", "#0F0");
     // do stop
 }
+
+$(document).ready(function() {
+    var c = $("#cat-dropdown");
+
+    $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
+
+    for(var val in categories) {
+        console.log(val);
+        $('<option />', {value: val, text: categories[val].name}).appendTo(t);
+    }
+});
