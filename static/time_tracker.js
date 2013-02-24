@@ -125,7 +125,11 @@ function add_task(name, category_id, description, time_estimate, time_spent, tim
       if (data.task !== undefined)
       {
         tasks.push(data.task);
-        refreshDOM();
+        drawTasks();
+        $("#task-dropdown").val(tasks.length - 1);
+        // $('#cat-dropdown').val(categories.length - 1);
+        
+        // refreshDOM();
       }
     }
   });

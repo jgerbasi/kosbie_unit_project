@@ -1,6 +1,8 @@
 function drawTasks()
 {
   var t = $("#task-dropdown");
+  t.html("");
+  
 
   $('<option />', {value: -1, text: 'Select a task ...'}).appendTo(t);
 
@@ -32,19 +34,36 @@ function stop_timer() {
     // do stop
 }
 
+
+//TODO check to make sure fields valid/ not blank
 function process_task() {
   var this_form = $("#task-form");
   var name = $("#taskname").val();
   var category_id = $("#cat-dropdown").val();
   var description = $("#desc").val();
-  var hour = $("#hour").val();
-  var min = $("#min-dropdown").val();
+  var hour;
+  
+  if ($("#hour").val() === "" || $("#hour").val() === undefined)
+    hour = 0;
+  else
+    hour = parseInt($("#hour").val());
+  
+  
+  var min = parseInt($("#min-dropdown").val());
   var time_estimate = (hour * 60) + min;
+  // console.log("time est: " + time_estimate);
   var time_spent = undefined;
   var time_chunks = undefined;
   var completed = false;
   add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
-  $("#add").val("Submit");
+  $("#add").val("Add Task");
+  
+  $("#hour").val("")
+  $("#min-dropdown").val("")
+  $("#taskname").val("");
+  $("#cat-dropdown").val("-1");
+  $("#desc").val("");
+  
 }
 
 
@@ -91,7 +110,7 @@ $('#new_category').keydown(function(event) {
 function drawCategories()
 {
   var c = $("#cat-dropdown");
-  $("#cat-dropdown").html("");
+  c.html("");
   console.log(tasks);
   console.log(tasks);
   console.log(tasks);
