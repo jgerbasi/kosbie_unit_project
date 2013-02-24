@@ -110,11 +110,12 @@ function get_tasks() {
 }
 
 
-function add_task(name, category_id, time_estimate, time_spent, time_chunks, completed) {
+function add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed) {
   $.ajax({
     type: "post",
     data: {"name": name,
            "category_id": category_id,
+           "description": description,
            "time_estimate": time_estimate,
            "time_spent": time_spent,
            "time_chunks": time_chunks,
@@ -131,11 +132,12 @@ function add_task(name, category_id, time_estimate, time_spent, time_chunks, com
 }
 
 
-function edit_task(id, name, category_id, time_estimate, time_spent, time_chunks, completed) {
+function edit_task(id, name, category_id, description, time_estimate, time_spent, time_chunks, completed) {
   $.ajax({
     type: "put",
     data: {"name": name,
            "category_id": category_id,
+           "description": description,
            "time_estimate": time_estimate,
            "time_spent": time_spent,
            "time_chunks": time_chunks,
