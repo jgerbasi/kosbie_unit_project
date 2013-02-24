@@ -194,6 +194,7 @@ function add_category(name) {
       {
         categories.push(data.category);
         drawCategories();
+        $('#cat-dropdown').val(categories.length - 1);
         //refreshDOM();
       }
     }
