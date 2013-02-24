@@ -3,7 +3,8 @@ var s = $("#dropdown");
 $('<option />', {value: -1, text: 'Select a task ...'}).appendTo(s);
 
 for(var val in tasks) {
-    $('<option />', {value: val.id, text: val.name}).appendTo(s);
+    console.log(tasks);
+    $('<option />', {value: val, text: tasks[val].name}).appendTo(s);
 }
 
 $(document).ready(function() {
