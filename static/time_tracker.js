@@ -193,6 +193,8 @@ function add_category(name) {
       if (data.category !== undefined)
       {
         categories.push(data.category);
+        drawCategories();
+        $('#cat-dropdown').val(categories.length - 1);
         //refreshDOM();
       }
     }
