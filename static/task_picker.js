@@ -12,10 +12,11 @@ function drawTasks()
 
 $(document).ready(function() {
     $('#start').click(function() {
-       $(this).val() == "start" ? start_timer() : stop_timer();
+       $(this).val() === "start" ? start_timer() : stop_timer();
     });
     $('#add').click(function(event) {        
          $('#overlay').toggle('show');
+         $(this).val() === "Add Task" ? $(this).val("Submit") : $(this).val("Add Task");
     });
 });
 

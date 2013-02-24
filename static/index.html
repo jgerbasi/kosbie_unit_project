@@ -12,22 +12,28 @@
       <div class="clock"></div>
       <select id="task-dropdown"></select>
       <input type="button" id="start" value="start"/>
-      <input type="button" id="add" value="Add Task"/>
       <div id="overlay">
       	<form id="task-form">
           <div>
-            <label for="name">Task Name :</label>
+            <label for="name">Name</label>
             <input id="name" name="name" type="text" placeholder="Do 237 Project" class="task-name" />
           </div>
           <div>
-            <label for="name">Category :</label>
+            <label for="name">Category</label>
             <select id="cat-dropdown"></select>
           </div>
-<!--           <label for="hour">Estimated Completion Time :</label>
-          <input id="hour" name="hour" type="text" placeholder="Hour" class="time" /> :
-          <input id="min" name="min" type="text" placeholder="Min" class="time" /> -->
+          <div>
+            <label for="hour">Est. Completion Time</label>
+            <input id="hour" name="hour" type="text" placeholder="hr" class="time" /> :
+            <select id="min-dropdown"></select>
+          </div>
+          <div>
+            <label for="desc">Description</label>
+            <textarea id="desc" rows="4" cols="40" class="desc"></textarea>
+          </div>
         </form>
       </div>
+      <input type="button" id="add" value="Add Task"/>
     </div>
 
 
