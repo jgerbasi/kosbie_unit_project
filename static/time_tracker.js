@@ -193,6 +193,7 @@ function add_category(name) {
       if (data.category !== undefined)
       {
         categories.push(data.category);
+        drawCategories();
         //refreshDOM();
       }
     }

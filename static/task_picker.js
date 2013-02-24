@@ -34,6 +34,7 @@ function stop_timer() {
 function drawCategories()
 {
   var c = $("#cat-dropdown");
+  $("#cat-dropdown").html("");
   console.log(tasks);
   console.log(tasks);
   console.log(tasks);
