@@ -29,11 +29,8 @@ function stop_timer() {
 
 $(document).ready(function() {
     var c = $("#cat-dropdown");
-
     $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
-
     for(var val in categories) {
-        console.log(val);
         $('<option />', {value: val, text: categories[val].name}).appendTo(t);
     }
 });
