@@ -60,6 +60,7 @@ app.put("/tasks/:id", function(request, response){
                
   var newTask = {"name": request.body.name,
                  "category_id": request.body.category_id, // id is index into categories array
+                 "description": request.body.description,
                  "time_estimate": request.body.time_estimate,
                  "time_spent": request.body.time_spent,
                  "time_chunks": JSON.parse(request.body.time_chunks), // store time chunks in seconds
@@ -68,6 +69,7 @@ app.put("/tasks/:id", function(request, response){
                  
   newTask.name = (newTask.name !== undefined) ? newTask.name : oldTask.name;
   newTask.category_id = (newTask.category_id !== undefined) ? newTask.category_id : oldTask.category_id;
+  newTask.description = (newTask.description !== undefined) ? newTask.description : oldTask.description;
   newTask.time_estimate = (newTask.time_estimate !== undefined) ? newTask.time_estimate : oldTask.time_estimate;
   newTask.time_spent = (newTask.time_spent !== undefined) ? newTask.time_spent : oldTask.time_spent;
   newTask.time_chunks = (newTask.time_chunks !== undefined) ? newTask.time_chunks : oldTask.time_chunks;
@@ -99,6 +101,7 @@ app.post("/tasks", function(request, response) {
   // console.log(request.body);
   var task = {"name": request.body.name,
               "category_id": request.body.category_id,
+              "description": request.body.description,
               "time_estimate": request.body.time_estimate,
               "time_spent": 0,
               "time_chunks": [], // store time chunks in seconds
