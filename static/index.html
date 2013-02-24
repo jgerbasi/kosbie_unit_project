@@ -9,16 +9,26 @@
   <body>
   	<div class="wrapper">
   		<div class="banner"></div>
-    	<form id="task-form">
-        <input id="add" name="add" type="text" placeholder="Add a task ..." class="add-task" />
-        <label for="hour">Estimated Completion Time :</label>
-        <input id="hour" name="hour" type="text" placeholder="Hour" class="time" />
-        <input id="min" name="min" type="text" placeholder="Min" class="time" />
-      </form>
+      <div class="clock"></div>
+      <select id="dropdown"></select>
+      <input type="button" id="start" value="start"/>
+      <input type="button" id="add" value="Add Task"/>
+      <div id="overlay">
+      	<form id="task-form">
+          <label for="name">Task Name :</label>
+          <input id="name" name="name" type="text" placeholder="Do 237 Project" class="task-name" />
+          <label for="name">Category :</label>
+          <select></select>
+<!--           <label for="hour">Estimated Completion Time :</label>
+          <input id="hour" name="hour" type="text" placeholder="Hour" class="time" /> :
+          <input id="min" name="min" type="text" placeholder="Min" class="time" /> -->
+        </form>
+      </div>
     </div>
 
 
     <script src="jquery-1.9.0.js"></script>
     <script src="time_tracker.js"></script>
+    <script src="task_picker.js"></script>
   </body>
 </html>

@@ -189,7 +189,7 @@ function add_category(name) {
       if (data.category !== undefined)
       {
         categories.push(data.category);
-        refreshDOM();
+        //refreshDOM();
       }
     }
   });
@@ -216,5 +216,5 @@ function edit_category(id, name) {
 $(document).ready(function() {
   get_categories();
   get_tasks();
-  refreshDOM();
+  //refreshDOM();
 });

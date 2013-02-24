@@ -10,24 +10,84 @@ body {
 }
 
 .banner {
-	background-image: url('images/banner.png');
+	background-image: url('banner.png');
 	width: 600px;
 	height: 100px;
 	margin-left: auto;   
 	margin-right: auto;
 }
 
-form {
-	text-align: center;
+.clock {
+  background-image: url('clock.png');
+  width: 500px;
+  height: 188px;
+  margin-left: auto;   
+  margin-right: auto;
 }
 
-.add-task {
-	padding: 15px;
+#dropdown {
+  display: block;
+  float: left;
+  width: 200px;
+  height: 25px;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: auto;
+}
+
+#start {
+  display: block;
+  float: right;
+  background-color: #0F0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: 200px;
+}
+
+#add {
+  display: block;
+  width: 150px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 1px #FAFAFA;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+
+#overlay {
+  display: none;
+  border: 1px solid #BBB;
+  background-color: white;
+  box-shadow: 1px 1px 1px #FAFAFA;
+  border-radius: 10px;
+  width: 400px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form {
+	text-align: left;
+  font-size: 25px;
+}
+
+.task-name {
   border-radius: 4px;
   border: 1px solid #CCC;
   box-shadow: 1px 1px 1px #FAFAFA;
   background-color: #FFF;
-
   font-size: 20px;
   color: #555;
   box-sizing: border-box;
@@ -36,11 +96,11 @@ form {
 }
 
 label {
-  display: block;
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 10px;
   color: #555;
 }
+
 
 .time {
 	padding: 15px;
