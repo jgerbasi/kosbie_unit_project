@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="jquery-1.9.0.js"></script>
+    <script src="time_tracker.js"></script>
+    <script src="graph_picker.js"></script>
+    <script src="task_picker.js"></script>
+    <script>
+    
+    $(document).ready(function() {
+      // get_categories(drawCategoriesFor);
+      get_tasks(displayAllTasks);
+      //refreshDOM();
+    });
+    </script>
+    
+    <link href="reset.css" rel="stylesheet" type="text/css">
+    <link href="layout.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+  	<div class="wrapper">
+  		<div class="banner"></div>
+      <a href="/static/index.html">Home</a>
+      <div id="tasks_container">
+        
+      </div>
+    </div>
+
+
+  </body>
+</html>

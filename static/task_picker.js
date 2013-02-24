@@ -1,4 +1,4 @@
-function drawTasks()
+function drawTasksDropDown()
 {
   var t = $("#task-dropdown");
   t.html("");
@@ -9,6 +9,17 @@ function drawTasks()
   for(var val in tasks) {
       $('<option />', {value: val, text: tasks[val].name}).appendTo(t);
   }
+}
+
+function displayAllTasks()
+{
+  var container = $("#tasks_container");
+  for(var task_index in tasks) {
+    var new_div = $("<div>").html(tasks[task_index].name)
+    container.append(new_div);
+  }
+  
+
 }
 
 
