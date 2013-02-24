@@ -31,6 +31,37 @@ $(document).ready(function() {
          $('#overlay').toggle('show');
          $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
     });
+    
+    $('#cat-dropdown').change(function() {
+      // alert('Handler for .change() called.');
+      var this_dropdown = $(this);
+      // console.log(this_dropdown.val());
+      var this_value = this_dropdown.val();
+      var input = $('#new_category');
+
+      if (this_value === "new")
+      {
+        input.css("visibility", "visible");
+      }
+      else
+      {
+        input.css("visibility", "hidden");
+      }
+    });
+
+
+    $('#new_category').keydown(function(event) {
+      if (event.which === 13) //user hit enter!
+      {
+        // add category to backend
+        var new_category = $('#new_category').val();
+        add_category(new_category);
+
+        $('#new_category').val("");
+        $('#new_category').css("visibility", "hidden");
+      }
+    });
+  
 });
 
 function start_timer() {
@@ -80,42 +111,6 @@ function process_task() {
 
 //
 
-$('#cat-dropdown').change(function() {
-  // alert('Handler for .change() called.');
-  var this_dropdown = $(this);
-  // console.log(this_dropdown.val());
-  var this_value = this_dropdown.val();
-  var input = $('#new_category');
-  
-  if (this_value === "new")
-  {
-    input.css("visibility", "visible");
-  }
-  else
-  {
-    input.css("visibility", "hidden");
-  }
-});
-
-
-$('#new_category').keydown(function(event) {
-  if (event.which === 13) //user hit enter!
-  {
-    // add category to backend
-    var new_category = $('#new_category').val();
-    add_category(new_category);
-    
-    $('#new_category').val("");
-    $('#new_category').css("visibility", "hidden");
-  }
-  // if (event.which == 13) {
-  //    event.preventDefault();
-  //  }
-  //  xTriggered++;
-  //  var msg = 'Handler for .keydown() called ' + xTriggered + ' time(s).';
-  // $.print(msg, 'html');
-  // $.print(event);
-});
 
 
 function drawCategories()
