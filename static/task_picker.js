@@ -1,10 +1,14 @@
-var t = $("#task-dropdown");
+function drawTasks()
+{
+  var t = $("#task-dropdown");
 
-$('<option />', {value: -1, text: 'Select a task ...'}).appendTo(t);
+  $('<option />', {value: -1, text: 'Select a task ...'}).appendTo(t);
 
-for(var val in tasks) {
-    $('<option />', {value: val, text: tasks[val].name}).appendTo(t);
+  for(var val in tasks) {
+      $('<option />', {value: val, text: tasks[val].name}).appendTo(t);
+  }
 }
+
 
 $(document).ready(function() {
     $('#start').click(function() {
@@ -27,13 +31,22 @@ function stop_timer() {
     // do stop
 }
 
-$(document).ready(function() {
-    var c = $("#cat-dropdown");
+function drawCategories()
+{
+  var c = $("#cat-dropdown");
+  console.log(tasks);
+  console.log(tasks);
+  console.log(tasks);
+  console.log(tasks);
+  console.log(tasks);
+  console.log(categories);
+  
+  $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 
-    $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
+  for(var val in categories) {
+      console.log(val);
+      $('<option />', {value: val, text: categories[val].name}).appendTo(c);
+  }
+  
+}
 
-    for(var val in categories) {
-        console.log(val);
-        $('<option />', {value: val, text: categories[val].name}).appendTo(t);
-    }
-});

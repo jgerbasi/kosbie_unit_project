@@ -103,6 +103,8 @@ function get_tasks() {
     url: "/tasks",
     success: function(data) {
       tasks = data.tasks;
+      drawTasks();
+      
     }
   });
 }
@@ -175,6 +177,8 @@ function get_categories() {
     url: "/categories",
     success: function(data) {
       categories = data.categories;
+      drawCategories();
+      
     }
   });
 }
