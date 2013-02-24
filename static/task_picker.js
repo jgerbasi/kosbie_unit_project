@@ -49,5 +49,3 @@ function drawCategories()
   }
   
 }
-
->>>>>>> 2e7e183b97693ae1bdc977c8848fac18870ec543
