@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
     $('#add').click(function(event) {        
          $('#overlay').toggle('show');
-         $(this).val() === "Add Task" ? $(this).val("Submit") : $(this).val("Add Task");
+         $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
     });
 });
 
@@ -30,6 +30,21 @@ function stop_timer() {
     $('#start').val("start");
     $('#start').css("background-color", "#0F0");
     // do stop
+}
+
+function process_task() {
+  var this_form = $("#task-form");
+  var name = $("#taskname").val();
+  var category_id = $("#cat-dropdown").val();
+  var description = $("#desc").val();
+  var hour = $("#hour").val();
+  var min = $("#min-dropdown").val();
+  var time_estimate = (hour * 60) + min;
+  var time_spent = undefined;
+  var time_chunks = undefined;
+  var completed = false;
+  add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
+  $("#add").val("Submit");
 }
 
 

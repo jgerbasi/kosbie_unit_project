@@ -16,7 +16,7 @@
       	<form id="task-form">
           <div>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Do 237 Project" class="task-name" />
+            <input id="taskname" name="name" type="text" placeholder="Do 237 Project" class="task-name" />
           </div>
           <div>
             <label for="name">Category</label>
@@ -26,7 +26,12 @@
           <div>
             <label for="hour">Est. Completion Time</label>
             <input id="hour" name="hour" type="text" placeholder="hr" class="time" /> :
-            <select id="min-dropdown"></select>
+            <select id="min-dropdown">
+              <option val="0">00</option>
+              <option val="15">15</option>
+              <option val="30">30</option>
+              <option val="45">45</option>
+            </select>
           </div>
           <div>
             <label for="desc">Description</label>

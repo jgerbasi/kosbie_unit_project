@@ -137,3 +137,9 @@ label {
 textarea {
   resize: none;
 }
+
+#min-dropdown {
+  width: 50px;
+  height: 25px;
+  border: 1px solid black;
+}
