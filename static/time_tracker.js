@@ -97,13 +97,13 @@ function get_top_categories()
 ///////////
 
 
-function get_tasks() {
+function get_tasks(callBackFn) {
   $.ajax({
     type: "get",
     url: "/tasks",
     success: function(data) {
       tasks = data.tasks;
-      drawTasks();
+      callBackFn();
       
     }
   });
@@ -125,7 +125,11 @@ function add_task(name, category_id, description, time_estimate, time_spent, tim
       if (data.task !== undefined)
       {
         tasks.push(data.task);
-        refreshDOM();
+        drawTasks();
+        $("#task-dropdown").val(tasks.length - 1);
+        // $('#cat-dropdown').val(categories.length - 1);
+        
+        // refreshDOM();
       }
     }
   });
@@ -173,13 +177,13 @@ function edit_task(id, name, category_id, description, time_estimate, time_spent
 // AJAX requests for Categories
 ///////////
 
-function get_categories() {
+function get_categories(callBackFn) {
   $.ajax({
     type: "get",
     url: "/categories",
     success: function(data) {
       categories = data.categories;
-      drawCategories();
+      callBackFn();
       
     }
   });
@@ -221,8 +225,3 @@ function edit_category(id, name) {
 
 
 
-$(document).ready(function() {
-  get_categories();
-  get_tasks();
-  //refreshDOM();
-});
