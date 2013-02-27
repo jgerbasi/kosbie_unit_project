@@ -179,18 +179,19 @@ textarea {
 .footer a {
   text-decoration: none;
   color: #333;
-  border-left: 1px solid grey;
   line-height: 50px;
+  font-weight: bold;
   font-size: 30px;
-  padding: 0px 20px;
+  padding: 0px 45px;
 }
 
 .footer a:hover {
   color: #00C6C5;
 }
 
-a:last-child {
-  border-right: 1px solid black;
+a:nth-child(2) {
+  border-left: 1px solid #AAA;
+  border-right: 1px solid #AAA;
 }
 
 #graphCanvas {
