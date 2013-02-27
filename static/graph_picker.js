@@ -119,12 +119,19 @@ function run() {
     $("#graph_tasks").empty();      
     graph_tasks = [];
     
-    //get top 5 (simulate for now)
-    var new_top = [1,2,3];
     
-    for (var i = 0; i < new_top.length; i++)
+    var top_tasks = get_top_tasks();
+    var top_tasks_indexes = [];
+    for (var i = 0; i < top_tasks.length; i++)
     {
-      addTaskToGraph(new_top[i]);
+      var this_task = top_tasks[i];
+      var task_idx = tasks.indexOf(this_task);
+      top_tasks_indexes.push(task_idx);
+    }
+    
+    for (var i = 0; i < top_tasks_indexes.length; i++)
+    {
+      addTaskToGraph(top_tasks_indexes[i]);
     }
   });
   
