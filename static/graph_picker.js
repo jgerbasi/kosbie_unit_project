@@ -75,8 +75,8 @@ function calculateMax() {
  
   
 function sizeCanvas(){       // canvas can be resized at any point in game
-  ctx.canvas.width  = window.innerWidth * .5;
-  ctx.canvas.height = Math.round(ctx.canvas.width * .6); //sets ratio
+  ctx.canvas.width  = window.innerWidth * .4;
+  ctx.canvas.height = Math.round(500 * .5); //sets ratio
 
   redrawGraph();
 } 
@@ -90,13 +90,12 @@ function redrawGraph() {
  
 function run() {
 
-  canvas = document.getElementById("myCanvas");
+  canvas = document.getElementById("graphCanvas");
   ctx = canvas.getContext("2d");
 
   // make canvas focusable, then give it focus!
   window.addEventListener('resize', sizeCanvas);
   canvas.setAttribute('tabindex','0');
-  canvas.focus();
   sizeCanvas();
   
 }

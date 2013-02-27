@@ -14,6 +14,7 @@ function drawTasksDropDown()
 function displayAllTasks()
 {
   var container = $("#tasks_container");
+  console.log(tasks);
   for(var task_index in tasks) {
     var new_div = $("<div>").html(tasks[task_index].name)
     container.append(new_div);
@@ -28,8 +29,16 @@ $(document).ready(function() {
        $(this).val() === "start" ? start_timer() : stop_timer();
     });
     $('#add').click(function(event) {        
-         $('#overlay').toggle('show');
-         $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
+      if ($('#overlay').is(":visible")) {
+        $('#overlay').data("height", $('#overlay').height()).animate({
+        height: 0
+      }, function(){ $(this).hide(); });
+      } else {
+        $('#overlay').show().animate({
+        height: $('#overlay').data("height")
+      });
+      }
+      $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
     });
     
     $('#cat-dropdown').change(function() {
@@ -72,7 +81,7 @@ function start_timer() {
 
 function stop_timer() {
     $('#start').val("start");
-    $('#start').css("background-color", "#0F0");
+    $('#start').css("background-color", "#00C6C5");
     // do stop
 }
 
@@ -108,21 +117,10 @@ function process_task() {
   
 }
 
-
-//
-
-
-
 function drawCategories()
 {
   var c = $("#cat-dropdown");
   c.html("");
-  console.log(tasks);
-  console.log(tasks);
-  console.log(tasks);
-  console.log(tasks);
-  console.log(tasks);
-  console.log(categories);
   
   $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 

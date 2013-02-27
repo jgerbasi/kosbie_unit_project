@@ -5,9 +5,8 @@
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="layout.css" rel="stylesheet" type="text/css">
     <script src="jquery-1.9.0.js"></script>
-    <script src="time_tracker.js"></script>
-    <script src="graph_picker.js"></script>
     <script src="task_picker.js"></script>
+    <script src="time_tracker.js"></script>
     
     <script>
     
@@ -21,9 +20,8 @@
 
   <body>
   	<div class="wrapper">
-  		<div class="banner"></div>
+  		<a class="banner" href="/static/index.html"></a>
       <div class="clock"></div>
-      <a href="/static/tasks.html">Tasks list</a>
       <select id="task-dropdown"></select>
       <input type="button" id="start" value="start"/>
       <div id="overlay">
@@ -54,6 +52,11 @@
         </form>
       </div>
       <input type="button" id="add" value="Add Task"/>
+      <div class="footer">
+        <a href="/static/index.html">Home</a>
+        <a href="/static/tasks.html">Tasks List</a>
+        <a href="/static/graph_picker.html">Graph Picker</a>
+      </div>
     </div>
 
 
