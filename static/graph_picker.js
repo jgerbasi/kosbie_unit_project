@@ -33,11 +33,12 @@ function drawGraph() {
   ctx.font = canvas.width * .02 + "px Arial";
   ctx.textAlign = "right";
   if (maxTaskTime !== 0){
-    ctx.fillText(maxTaskTime + " -", canvas.width * .1,canvas.height * .15 + 4); // max
-    ctx.fillText(maxTaskTime * .8 +" -", canvas.width *.1, canvas.height * .29);
-    ctx.fillText(maxTaskTime * .6 +" -", canvas.width *.1, canvas.height * .43);
-    ctx.fillText(maxTaskTime * .4 +" -", canvas.width *.1, canvas.height * .57);
-    ctx.fillText(maxTaskTime * .2 +" -", canvas.width *.1, canvas.height * .71);
+    var rounded_interval =  
+    ctx.fillText(parseInt(maxTaskTime) + " -", canvas.width * .1,canvas.height * .15 + 4); // max
+    ctx.fillText(parseInt(maxTaskTime * .8) +" -", canvas.width *.1, canvas.height * .29);
+    ctx.fillText(parseInt(maxTaskTime * .6) +" -", canvas.width *.1, canvas.height * .43);
+    ctx.fillText(parseInt(maxTaskTime * .4) +" -", canvas.width *.1, canvas.height * .57);
+    ctx.fillText(parseInt(maxTaskTime * .2) +" -", canvas.width *.1, canvas.height * .71);
   }
   ctx.fillText("0 -",canvas.width * .1,canvas.height * .8 + 2); // 0
  }
@@ -213,6 +214,7 @@ function removeTaskFromGraph(task_id)
   
   var idx = graph_tasks.indexOf(task_id);
   graph_tasks.splice(idx, 1);
+  maxTaskTime = 0;
   redrawGraph();
   
   // TODO call function here to refresh graph view.
