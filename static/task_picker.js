@@ -29,14 +29,12 @@ $(document).ready(function() {
        $(this).val() === "start" ? start_timer() : stop_timer();
     });
     $('#add').click(function(event) {        
-      if ($('#overlay').is(":visible")) {
-        $('#overlay').data("height", $('#overlay').height()).animate({
-        height: 0
-      }, function(){ $(this).hide(); });
+      if ($('#dim-overlay').is(":visible")) {
+        $('#dim-overlay').hide();
+        $('#overlay').hide();
       } else {
-        $('#overlay').show().animate({
-        height: $('#overlay').data("height")
-      });
+        $('#overlay').show();
+        $('#dim-overlay').show()
       }
       $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
     });
@@ -75,7 +73,7 @@ $(document).ready(function() {
 
 function start_timer() {
     $('#start').val("stop");
-    $('#start').css("background-color", "red");
+    $('#start').css("background-color", "#D23439");
     // do start
 }
 
