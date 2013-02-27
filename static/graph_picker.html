@@ -1,31 +1,45 @@
 <html>
 
   <head>
+    <link href="reset.css" rel="stylesheet" type="text/css">
+    <link href="layout.css" rel="stylesheet" type="text/css">
     <script src="jquery-1.9.0.js"></script>
+    <script src="time_tracker.js"></script>
     <script src="graph_picker.js"></script>
-
+    
   </head>
+  <body>
+    <div class="wrapper">
+      <a class="banner" href="/static/index.html"></a>
 
-  <select id="select_element">
-  
-  </select>
+      <canvas id="graphCanvas">
+        No canvas available!
+      </canvas>
+      
+      <select id="select_element"></select>
 
+      <div id="add_button">
+        Add this task
+      </div>
+      
+      <br>
+      <br>
+      <div id="top_5_tasks">
+        Top 5 tasks
+      </div>
+      
+      <p>Tasks to graph:</p>
+      <ul id="graph_tasks">
+      
+      </ul>
+        
+      <div class="footer">
+        <a href="/static/index.html">Home</a>
+        <a href="/static/tasks.html">Tasks List</a>
+        <a href="/static/graph_picker.html">Graph Picker</a>
+      </div>
+    </div>
 
-  <div id="add_button">
-    Add this task
-  </div>
-  
-  <br>
-  <br>
-  <div id="top_5_tasks">
-    Top 5 tasks
-  </div>
-  
-  <p>Tasks to graph:
-  <ul id="graph_tasks">
-  
-  </ul>
-  
-
+  </body>
 
 </html>

@@ -5,9 +5,8 @@
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="layout.css" rel="stylesheet" type="text/css">
     <script src="jquery-1.9.0.js"></script>
-    <script src="time_tracker.js"></script>
-    <script src="graph_picker.js"></script>
     <script src="task_picker.js"></script>
+    <script src="time_tracker.js"></script>
     
     <script>
     
@@ -21,31 +20,26 @@
 
   <body>
   	<div class="wrapper">
-  		<div class="banner"></div>
+  		<a class="banner" href="/static/index.html"></a>
       <div class="clock"></div>
-      <a href="/static/tasks.html">Tasks list</a>
       <select id="task-dropdown"></select>
       <input type="button" id="start" value="start"/>
+      <div id="dim-overlay"></div>
       <div id="overlay">
       	<form id="task-form">
           <div>
-            <label for="name">Name</label>
+            <label for="taskname">Name</label>
             <input id="taskname" name="name" type="text" placeholder="Do 237 Project" class="task-name" />
           </div>
           <div>
-            <label for="name">Category</label>
+            <label for="cat-dropdown">Category</label>
             <select id="cat-dropdown"></select>
             <input style="visibility:hidden;" id="new_category" name="name" type="text" placeholder="Add category..." />
           </div>
           <div>
-            <label for="hour">Est. Completion Time</label>
+            <label for="hour">Time Allocated</label>
             <input id="hour" name="hour" type="text" placeholder="hr" class="time" /> :
-            <select id="min-dropdown">
-              <option val="0">00</option>
-              <option val="15">15</option>
-              <option val="30">30</option>
-              <option val="45">45</option>
-            </select>
+            <input id="min" name="min" type="text" placeholder="min" class="time" />
           </div>
           <div>
             <label for="desc">Description</label>
@@ -54,6 +48,11 @@
         </form>
       </div>
       <input type="button" id="add" value="Add Task"/>
+      <div class="footer">
+        <a href="/static/index.html">Home</a>
+        <a href="/static/tasks.html">Tasks List</a>
+        <a href="/static/graph_picker.html">Graph Picker</a>
+      </div>
     </div>
 
 
