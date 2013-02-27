@@ -108,7 +108,7 @@ function process_task() {
   $("#add").val("Add Task");
   
   $("#hour").val("")
-  $("#min-dropdown").val("")
+  $("#min").val("")
   $("#taskname").val("");
   $("#cat-dropdown").val("-1");
   $("#desc").val("");
