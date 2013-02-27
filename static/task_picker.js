@@ -36,7 +36,12 @@ $(document).ready(function() {
         $('#overlay').show();
         $('#dim-overlay').show()
       }
-      $(this).val() === "Add Task" ? $(this).val("Submit") : process_task();
+      if ($(this).val() === "Add Task") {
+        $(this).val("Submit");
+        $(this).css("background-color", "#00C6C5");
+      } else {
+        process_task();
+      }
     });
     
     $('#cat-dropdown').change(function() {
@@ -68,6 +73,15 @@ $(document).ready(function() {
         $('#new_category').css("visibility", "hidden");
       }
     });
+
+    // $(document).mouseup(function (e) {
+    //   var container = $("#overlay");
+    //   if (container.has(e.target).length === 0)
+    //   {
+    //     container.hide();
+    //     $("#dim-overlay").hide();
+    //   }
+    // });
   
 });
 
@@ -106,6 +120,7 @@ function process_task() {
   var completed = false;
   add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
   $("#add").val("Add Task");
+  $("#add").css("background-color", "#C0C0C0");
   
   $("#hour").val("")
   $("#min").val("")
