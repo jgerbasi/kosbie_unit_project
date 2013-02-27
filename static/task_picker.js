@@ -98,7 +98,7 @@ function process_task() {
     hour = parseInt($("#hour").val());
   
   
-  var min = parseInt($("#min-dropdown").val());
+  var min = parseInt($("#min").val());
   var time_estimate = (hour * 60) + min;
   // console.log("time est: " + time_estimate);
   var time_spent = undefined;

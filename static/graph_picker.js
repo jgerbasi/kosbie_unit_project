@@ -1,4 +1,3 @@
-var tt = []; // tasks array that are selected to be added to graph
 var maxTaskTime = 0;
 
 
@@ -49,14 +48,16 @@ function drawGraph() {
   var topcanvas = canvas.height * .15;
   var downcanvas = canvas.height * .8;
 
-  if (tt.length !== 0){
-      for (i = 0; i < tt.length; i++) {
+  if (graph_tasks.length !== 0){
+      for (i = 0; i < graph_tasks.length; i++) {
+        var this_task = tasks[graph_tasks[i]];
+        console.log(this_task);
         ctx.fillStyle = "Blue";
-        ctx.fillRect(((leftcanvas + 10) + ((rightcanvas)/(tt.length))*(i)), (downcanvas), ((rightcanvas)/(5) -10), ((tt[i].time_spent/maxTaskTime) * (topcanvas - downcanvas)));
+        ctx.fillRect(((leftcanvas + 10) + ((rightcanvas)/(graph_tasks.length))*(i)), (downcanvas), ((rightcanvas)/(5) -10), ((this_task.time_spent/maxTaskTime) * (topcanvas - downcanvas)));
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
         ctx.font = canvas.width * .015 + "px Arial";
-        ctx.fillText(tt[i].name,(rightcanvas)/((i+1)*2), (canvas.height * .9))
+        ctx.fillText(this_task.name,(rightcanvas)/((i+1)*2), (canvas.height * .9))
       }
   }
  
@@ -64,13 +65,16 @@ function drawGraph() {
  
  
 function calculateMax() {
-  if (tt.length !== 0) {
-    for (i = 0; i < tt.length; i++) {
-      if (tt[i].time_spent > maxTaskTime) {
-        maxTaskTime = tt[i].time_spent;
+  if (graph_tasks.length !== 0) {
+    for (i = 0; i < graph_tasks.length; i++) {
+      var this_task = tasks[graph_tasks[i]];
+      if (this_task.time_spent > maxTaskTime) {
+        maxTaskTime = this_task.time_spent;
       }
     }
   }
+  else
+    maxTaskTime = 0;
 }
  
   
@@ -89,6 +93,35 @@ function redrawGraph() {
 }
  
 function run() {
+  
+  buildSelectElement();
+  
+  //register click event for add button
+
+  $('#add_button').click(function()
+  {
+    var task_id_added = $("#select_element").val()
+    addTaskToGraph(task_id_added);
+    
+  });
+
+
+  //register click event for top_5_tasks button
+  $('#top_5_tasks').click(function()
+  {
+    //wipe out graph_tasks
+    $("#graph_tasks").empty();      
+    graph_tasks = [];
+    
+    //get top 5 (simulate for now)
+    var new_top = [1,2,3];
+    
+    for (var i = 0; i < new_top.length; i++)
+    {
+      addTaskToGraph(new_top[i]);
+    }
+  });
+  
 
   canvas = document.getElementById("graphCanvas");
   ctx = canvas.getContext("2d");
@@ -101,29 +134,38 @@ function run() {
 }
 
 // Prepopulat the dropdown
-var task1 = {name: "hello world", time_spent: 800 };
-var task2 = {name: "how big are you?", time_spent: 600 };
-var task3 = {name: "how are you?", time_spent: 400 };
-var task4 = {name: "goodbye world", time_spent: 200 };
-
-var tasks = [task1,task2,task3,task4];
+// var task1 = {name: "hello world", time_spent: 800 };
+// var task2 = {name: "how big are you?", time_spent: 600 };
+// var task3 = {name: "how are you?", time_spent: 400 };
+// var task4 = {name: "goodbye world", time_spent: 200 };
+// 
+// var tasks = [task1,task2,task3,task4];
 var graph_tasks = []; //an array that stores the task ids to be graphed
 
 
 // task_ids = [0,1,3,6,7]
-function buildSelectElement(task_ids)
+function buildSelectElement()
 {
+  // var count = 0;
+  // var task_array = [];
+  // if (task_ids === undefined)
+  //   count = tasks.length;
+  //   task_array
+  // else
+  //   count = tasks_ids.length;
+    
+    
   var select_element = $("#select_element");
   
-  for (var i = 0; i < task_ids.length; i++)
+  for (var i = 0; i < tasks.length; i++)
   {
-    var task_id = task_ids[i];
+    var this_task = tasks[i];
     // var append_string = '<option value="' + task_id + '">' + tasks[task_id].name + '</option>';
     // console.log(append_string);
     // select_element.append(append_string);
     
-    select_element.append($('<option>', { value : task_id })
-                  .text(tasks[task_id].name));
+    select_element.append($('<option>', { value : i })
+                  .text(this_task.name));
   }
   
 }
@@ -156,7 +198,7 @@ function addTaskToGraph(task_id)
     
     li.append(del_button);
     ul.append(li);
-    tt.push(tasks[task_id]);
+    // tt.push(tasks[task_id]);
     redrawGraph();
   
     // TODO call function here to refresh graph view.
@@ -171,6 +213,7 @@ function removeTaskFromGraph(task_id)
   
   var idx = graph_tasks.indexOf(task_id);
   graph_tasks.splice(idx, 1);
+  redrawGraph();
   
   // TODO call function here to refresh graph view.
 }
@@ -178,35 +221,10 @@ function removeTaskFromGraph(task_id)
 
 $('document').ready(function()
   {
-
-    run();
+      // get_categories(drawCategoriesFor);
+    get_tasks(run);
+      //refreshDOM();
+    // run();
     // console.log();
-    buildSelectElement([0,1,3]);
-    
-    //register click event for add button
-
-    $('#add_button').click(function()
-    {
-      var task_id_added = $("#select_element").val()
-      addTaskToGraph(task_id_added);
-      
-    });
-
-
-    //register click event for top_5_tasks button
-    $('#top_5_tasks').click(function()
-    {
-      //wipe out graph_tasks
-      $("#graph_tasks").empty();      
-      graph_tasks = [];
-      
-      //get top 5 (simulate for now)
-      var new_top = [1,2,3];
-      
-      for (var i = 0; i < new_top.length; i++)
-      {
-        addTaskToGraph(new_top[i]);
-      }
-    });
 
   });
