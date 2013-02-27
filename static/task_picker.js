@@ -75,12 +75,14 @@ function start_timer() {
     $('#start').val("stop");
     $('#start').css("background-color", "#D23439");
     // do start
+    startClock();
 }
 
 function stop_timer() {
     $('#start').val("start");
     $('#start').css("background-color", "#00C6C5");
     // do stop
+    var time = stopClock();
 }
 
 

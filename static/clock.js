@@ -1,19 +1,29 @@
 const SCREEN_WIDTH = 500;
 const SCREEN_HEIGHT = 200;
 
-var canvas = document.getElementById("clockCanvas");
-var ctx = canvas.getContext("2d");
+var canvas;
+var ctx;
+var clock_started;
+var secs;
+var img;
+var bgImg;
+$(document).ready(function() {
+  canvas = document.getElementById("clockCanvas");
+  ctx = canvas.getContext("2d");
 
 
-var clock_started = false;
-var secs = 0;
-var img = new Image();
-img.src = "digitalNumbers.png";
-var bgImg = new Image();
-bgImg.src = "clock.png"
+  clock_started = false;
+  secs = 0;
+  img = new Image();
+  img.src = "digitalNumbers.png";
+  img.onload = function(){
+  firstDraw();
+}
+  bgImg = new Image();
+  bgImg.src = "clock.png"
 
-
-canvas.setAttribute('tabindex','0');
+  canvas.setAttribute('tabindex','0');
+});
 
 
 var image_locations = {
@@ -30,9 +40,7 @@ var image_locations = {
   "sep": {"sx": 842, "sy": 15, "swidth":7, "sheight":39}
 }
 
-img.onload = function(){
-  firstDraw();
-}
+
 
 function firstDraw(){
   ctx.drawImage(bgImg, 0, 0);
