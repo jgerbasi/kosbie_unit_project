@@ -181,7 +181,7 @@ function addTaskToGraph(task_id)
   task_id = parseInt(task_id);
   
   // only do stuff if task not already in list
-  if (graph_tasks.indexOf(task_id) === -1)
+  if (graph_tasks.indexOf(task_id) === -1 && graph_tasks.length <= 4)
   {
     //add it to graph_tasks
     graph_tasks.push(task_id);

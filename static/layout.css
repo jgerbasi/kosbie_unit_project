@@ -221,3 +221,7 @@ a:nth-child(2) {
   font-size: 16px;
   color: #555;
 }
+
+#graph_tasks {
+  overflow:scroll;
+}
