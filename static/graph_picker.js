@@ -54,11 +54,16 @@ function drawGraph() {
         var this_task = tasks[graph_tasks[i]];
         console.log(this_task);
         ctx.fillStyle = "Blue";
-        ctx.fillRect(((leftcanvas + 10) + ((rightcanvas)/(graph_tasks.length))*(i)), (downcanvas), ((rightcanvas)/(5) -10), ((this_task.time_spent/maxTaskTime) * (topcanvas - downcanvas)));
+        var x_offset = ((leftcanvas + 10) + ((rightcanvas)/(graph_tasks.length))*(i));
+        var bar_width = ((rightcanvas)/(5) -10);
+        ctx.fillRect(x_offset, (downcanvas), bar_width, ((this_task.time_spent/maxTaskTime) * (topcanvas - downcanvas)));
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
         ctx.font = canvas.width * .015 + "px Arial";
-        ctx.fillText(this_task.name,(rightcanvas)/((i+1)*2), (canvas.height * .9))
+        ctx.textAlign = "center";
+        ctx.fillText(this_task.name,(x_offset + bar_width/2), (canvas.height * .9));
+        ctx.textAlign = "left";
+        
       }
   }
  
