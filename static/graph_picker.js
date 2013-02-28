@@ -104,7 +104,7 @@ function run() {
   
   //register click event for add button
 
-  $('#add_button').click(function()
+  $('#add_element').click(function()
   {
     var task_id_added = $("#select_element").val()
     addTaskToGraph(task_id_added);

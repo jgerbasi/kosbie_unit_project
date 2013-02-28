@@ -32,14 +32,14 @@ $(document).ready(function() {
        $(this).val() === "start" ? start_timer() : stop_timer(false);
     });
     $('#add').click(function(event) {        
-      if ($('#dim-overlay').is(":visible")) {
+      if ($('#dim-overlay').is(":visible") && ($('#taskname').val() !== "")) {
         $('#dim-overlay').hide();
         $('#overlay').hide();
       } else {
         $('#overlay').show();
         $('#dim-overlay').show()
       }
-      if ($(this).val() === "Add Task") {
+      if ($(this).val() === "New Task") {
         $(this).val("Submit");
         $(this).css("background-color", "#00C6C5");
       } else {
@@ -93,6 +93,13 @@ $(document).ready(function() {
     });
 
     $('#completed').hide();
+
+    $('#close').click(function() {
+      $('#dim-overlay').hide();
+      $('#overlay').hide();
+      $("#add").val("New Task");
+      $("#add").css("background-color", "#C0C0C0");
+    });
   
 });
 
@@ -135,33 +142,35 @@ function stop_timer(completed) {
 
 //TODO check to make sure fields valid/ not blank
 function process_task() {
-  var this_form = $("#task-form");
   var name = $("#taskname").val();
-  var category_id = $("#cat-dropdown").val();
-  var description = $("#desc").val();
-  var hour;
-  
-  if ($("#hour").val() === "" || $("#hour").val() === undefined)
-    hour = 0;
-  else
-    hour = parseInt($("#hour").val());
-  
-  
-  var min = parseInt($("#min").val());
-  var time_estimate = ((hour * 60 * 60) + min * 60);
-  var time_spent = 0;
-  var time_chunks = [];
-  var completed = false;
-  add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
-  $("#add").val("Add Task");
-  $("#add").css("background-color", "#C0C0C0");
-  
-  $("#hour").val("")
-  $("#min").val("")
-  $("#taskname").val("");
-  $("#cat-dropdown").val("-1");
-  $("#desc").val("");
-  
+  if (name !== "") {
+    var category_id = $("#cat-dropdown").val();
+    var description = $("#desc").val();
+    var hour;
+    
+    if ($("#hour").val() === "" || $("#hour").val() === undefined)
+      hour = 0;
+    else
+      hour = parseInt($("#hour").val());
+    
+    
+    var min = parseInt($("#min").val());
+    var time_estimate = ((hour * 60 * 60) + min * 60);
+    var time_spent = 0;
+    var time_chunks = [];
+    var completed = false;
+    add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
+    $("#add").val("New Task");
+    $("#add").css("background-color", "#C0C0C0");
+    
+    $("#hour").val("")
+    $("#min").val("")
+    $("#taskname").val("");
+    $("#cat-dropdown").val("-1");
+    $("#desc").val("");
+  } else {
+    console.log('test');
+  }
 }
 
 function drawCategories()
