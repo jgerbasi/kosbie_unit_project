@@ -166,11 +166,18 @@ function stop_timer(completed) {
     $('#current-task').hide();
     $('#completed').hide();
     $('#task-dropdown').show();
-    var time = stopClock();
-
-    current_task.time_spent += time;
+    var time = parseInt(stopClock());
+    // console.log(typeof(time));
+    // console.log("hello!");
+    
+    // console.log("time spent =" + current_task.time_spent);
+    // console.log("time spent type =" + typeof(current_task.time_spent));
+    current_task.time_spent = parseInt(current_task.time_spent) + time;
     current_task.completed = completed;
     current_task.time_chunks.push(time);
+    // console.log(current_task.time_chunks);
+    // console.log("time type: "+ typeof(current_task.time_chunks[0]));
+    
     edit_task($('#task-dropdown').val(), current_task.name, current_task.category_id, current_task.description, current_task.time_estimate, current_task.time_spent, current_task.time_chunks, current_task.completed);
 }
 
@@ -220,4 +227,25 @@ function drawCategories()
   }
   $('<option />', {value: "new", text: "New category..."}).appendTo(c);
   
+}
+
+function displayTime(second) {
+  var disp = "";
+  var tmp = 0;
+  //HH
+  tmp = ((((second - (second % 3600)) / 3600) - (((second - (second % 3600)) / 3600) % 10)) / 10) % 10;
+  disp += tmp;
+  tmp = ((second - (second % 3600)) / 3600) % 10;
+  disp += tmp + ":";
+  //MM
+  tmp = ((((second - (second % 60)) / 60) - (((second - (second % 60)) / 60) % 10)) / 10) % 6;
+  disp += tmp;
+  tmp = ((second - (second % 60)) / 60) % 10;
+  disp += tmp + ":"
+  //SS
+  tmp = ((second % 60) - (second % 10)) / 10;
+  disp += tmp;
+  tmp = second % 10;
+  disp += tmp;
+  return disp;
 }

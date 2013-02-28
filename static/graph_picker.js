@@ -2,11 +2,6 @@ var maxTaskTime = 0;
 
 
 function drawGraph() {
-  //Graph Title
-  ctx.fillStyle = "black";
-  ctx.font = (canvas.width *.05)+"px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("Graph Title", canvas.width/2, canvas.height * .1);
 
   //Graph Axis
   ctx.fillStyle = "black";
@@ -24,7 +19,7 @@ function drawGraph() {
   ctx.rotate(-Math.PI/2);
   ctx.font = canvas.width*.02 +"px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("Time (min)", -canvas.width *.3, canvas.height *.05);
+  ctx.fillText("Time (min)", -canvas.width *.2, canvas.height *.05);
   ctx.restore();
  
   // Bar Graphs values and names
@@ -33,12 +28,11 @@ function drawGraph() {
   ctx.font = canvas.width * .02 + "px Arial";
   ctx.textAlign = "right";
   if (maxTaskTime !== 0){
-    var rounded_interval =  
-    ctx.fillText(parseInt(maxTaskTime) + " -", canvas.width * .1,canvas.height * .15 + 4); // max
-    ctx.fillText(parseInt(maxTaskTime * .8) +" -", canvas.width *.1, canvas.height * .29);
-    ctx.fillText(parseInt(maxTaskTime * .6) +" -", canvas.width *.1, canvas.height * .43);
-    ctx.fillText(parseInt(maxTaskTime * .4) +" -", canvas.width *.1, canvas.height * .57);
-    ctx.fillText(parseInt(maxTaskTime * .2) +" -", canvas.width *.1, canvas.height * .71);
+    ctx.fillText(Math.round(maxTaskTime*10 )/10  + " -", canvas.width * .1,canvas.height * .15 + 4); // max
+    ctx.fillText(Math.round(maxTaskTime*10 *.8 )/10  +" -", canvas.width *.1, canvas.height * .29);
+    ctx.fillText(Math.round(maxTaskTime*10* .6 )/10   +" -", canvas.width *.1, canvas.height * .43);
+    ctx.fillText(Math.round(maxTaskTime*10 * .4)/10   +" -", canvas.width *.1, canvas.height * .57);
+    ctx.fillText(Math.round(maxTaskTime* .2 * 10 )/10   +" -", canvas.width *.1, canvas.height * .71);
   }
   ctx.fillText("0 -",canvas.width * .1,canvas.height * .8 + 2); // 0
  }
@@ -56,7 +50,8 @@ function drawGraph() {
         ctx.fillStyle = "Blue";
         var x_offset = ((leftcanvas + 10) + ((rightcanvas)/(graph_tasks.length))*(i));
         var bar_width = ((rightcanvas)/(5) -10);
-        ctx.fillRect(x_offset, (downcanvas), bar_width, ((this_task.time_spent/maxTaskTime) * (topcanvas - downcanvas)));
+        var time_min = (this_task.time_spent/60)/maxTaskTime;
+        ctx.fillRect(x_offset, (downcanvas), bar_width, ((time_min) * (topcanvas - downcanvas)));
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
         ctx.font = canvas.width * .015 + "px Arial";
@@ -74,8 +69,12 @@ function calculateMax() {
   if (graph_tasks.length !== 0) {
     for (i = 0; i < graph_tasks.length; i++) {
       var this_task = tasks[graph_tasks[i]];
-      if (this_task.time_spent > maxTaskTime) {
-        maxTaskTime = this_task.time_spent;
+      var time_min = this_task.time_spent/60;
+      
+      console.log(time_min);
+      
+      if (time_min > maxTaskTime) {
+        maxTaskTime = time_min;
       }
     }
   }
@@ -85,8 +84,6 @@ function calculateMax() {
  
   
 function sizeCanvas(){       // canvas can be resized at any point in game
-  ctx.canvas.width  = window.innerWidth * .4;
-  ctx.canvas.height = Math.round(500 * .5); //sets ratio
 
   redrawGraph();
 } 
@@ -140,9 +137,11 @@ function run() {
   ctx = canvas.getContext("2d");
 
   // make canvas focusable, then give it focus!
-  window.addEventListener('resize', sizeCanvas);
+  ctx.canvas.width  = 570;
+  ctx.canvas.height = 250; //sets ratio
+  
   canvas.setAttribute('tabindex','0');
-  sizeCanvas();
+  redrawGraph();
   
 }
 

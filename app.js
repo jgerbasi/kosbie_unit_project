@@ -57,13 +57,19 @@ app.put("/tasks/:id", function(request, response){
   // change listing at index, to the new listing
   var id = request.params.id;
   var oldTask = tasks[id];
-               
+  console.log("edit request, time chunks::");
+  console.log(request.body.time_chunks);
+  //convert chunks to integers
+  for (var i = 0; i < request.body.time_chunks.length; i++)
+  {
+    request.body.time_chunks[i] = parseInt(request.body.time_chunks[i]);
+  }
   var newTask = {"name": request.body.name,
                  "category_id": request.body.category_id, // id is index into categories array
                  "description": request.body.description,
-                 "time_estimate": request.body.time_estimate,
-                 "time_spent": request.body.time_spent,
-                 "time_chunks": JSON.parse(request.body.time_chunks), // store time chunks in seconds
+                 "time_estimate": parseInt(request.body.time_estimate),
+                 "time_spent": parseInt(request.body.time_spent),
+                 "time_chunks": request.body.time_chunks, // store time chunks in seconds
                  "completed": JSON.parse(request.body.completed) 
                  };
                  
@@ -77,6 +83,8 @@ app.put("/tasks/:id", function(request, response){
 
   // update the tasks list
   tasks[id] = newTask;
+  writeFile("tasks.txt", JSON.stringify(tasks));
+  
 
   response.send({
     task: newTask,
@@ -96,26 +104,6 @@ app.get("/tasks/:id", function(request, response){
 });
 
 
-// update task
-app.put("/tasks/:id", function(request, response) {
-  // console.log(request.body);
-  var task = {"name": request.body.name,
-              "category_id": request.body.category_id,
-              "description": request.body.description,
-              "time_estimate": request.body.time_estimate,
-              "time_spent": 0,
-              "time_chunks": [], // store time chunks in seconds
-              "completed": JSON.parse(request.body.completed) };
-  var task_id = request.params.id;
-  tasks[task_id] = task;
-  // do server side validation here if want...
-
-  writeFile("tasks.txt", JSON.stringify(tasks));
-  response.send({ 
-    task: task,
-    success: task !== undefined
-  });
-});
 
 // update task
 app.post("/tasks", function(request, response) {
@@ -123,7 +111,7 @@ app.post("/tasks", function(request, response) {
   var task = {"name": request.body.name,
               "category_id": request.body.category_id,
               "description": request.body.description,
-              "time_estimate": request.body.time_estimate,
+              "time_estimate": parseInt(request.body.time_estimate),
               "time_spent": 0,
               "time_chunks": [], // store time chunks in seconds
               "completed": false };
