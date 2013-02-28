@@ -186,3 +186,24 @@ function drawCategories()
   $('<option />', {value: "new", text: "New category..."}).appendTo(c);
   
 }
+
+function displayTime(second) {
+  var disp = "";
+  var tmp = 0;
+  //HH
+  tmp = ((((second - (second % 3600)) / 3600) - (((second - (second % 3600)) / 3600) % 10)) / 10) % 10;
+  disp += tmp;
+  tmp = ((second - (second % 3600)) / 3600) % 10;
+  disp += tmp + ":";
+  //MM
+  tmp = ((((second - (second % 60)) / 60) - (((second - (second % 60)) / 60) % 10)) / 10) % 6;
+  disp += tmp;
+  tmp = ((second - (second % 60)) / 60) % 10;
+  disp += tmp + ":"
+  //SS
+  tmp = ((second % 60) - (second % 10)) / 10;
+  disp += tmp;
+  tmp = second % 10;
+  disp += tmp;
+  return disp;
+}
