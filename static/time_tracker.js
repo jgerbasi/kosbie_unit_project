@@ -160,7 +160,7 @@ function add_task(name, category_id, description, time_estimate, time_spent, tim
 
 
 function edit_task(id, name, category_id, description, time_estimate, time_spent, time_chunks, completed) {
-  console.log("task id to edit = " + id);
+  console.log(typeof(time_chunks));
   $.ajax({
     type: "put",
     data: {"name": name,
@@ -174,7 +174,6 @@ function edit_task(id, name, category_id, description, time_estimate, time_spent
     success: function(data) {
       if (data.task !== undefined)
       {
-        console.log('test');
         tasks[id] = data.task;
       }
       

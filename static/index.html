@@ -14,7 +14,6 @@
     $(document).ready(function() {
       get_categories(drawCategories);
       get_tasks(drawTasksDropDown);
-      //refreshDOM();
     });
     </script>
   </head>
@@ -31,6 +30,7 @@
       <input type="button" id="start" value="start"/>
       <div id="dim-overlay"></div>
       <div id="overlay">
+        <a id="close" href="#"></a>
       	<form id="task-form">
           <div>
             <label for="taskname">Name</label>

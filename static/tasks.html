@@ -8,9 +8,8 @@
     <script>
     
     $(document).ready(function() {
-      // get_categories(drawCategoriesFor);
+      get_categories(displayAllTasks);
       get_tasks(displayAllTasks);
-      //refreshDOM();
     });
     </script>
     
@@ -21,8 +20,8 @@
   <body>
   	<div class="wrapper">
   		<a class="banner" href="/static/index.html"></a>
+      <table id="task-list-table" border="5"></table>
       <div id="tasks_container">
-        
       </div>
       <div class="footer">
         <a href="/static/index.html">Home</a>
