@@ -37,7 +37,7 @@ function drawGraph() {
     ctx.fillText(Math.round(maxTaskTime*10 *.8 )/10  +" -", canvas.width *.1, canvas.height * .29);
     ctx.fillText(Math.round(maxTaskTime*10* .6 )/10   +" -", canvas.width *.1, canvas.height * .43);
     ctx.fillText(Math.round(maxTaskTime*10 * .4)/10   +" -", canvas.width *.1, canvas.height * .57);
-    ctx.fillText(Math.round(maxTaskTime* .2 )/10   +" -", canvas.width *.1, canvas.height * .71);
+    ctx.fillText(Math.round(maxTaskTime* .2 * 10 )/10   +" -", canvas.width *.1, canvas.height * .71);
   }
   ctx.fillText("0 -",canvas.width * .1,canvas.height * .8 + 2); // 0
  }
