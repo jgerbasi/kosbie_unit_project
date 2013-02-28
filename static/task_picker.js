@@ -53,11 +53,11 @@ function displayAllTasks()
     new_tr.append(category_td);
 
     var est_td = $('<td>');
-    est_td.html(task.time_estimate);
+    est_td.html(displayTime(task.time_estimate));
     new_tr.append(est_td);
 
     var actual_td = $('<td>');
-    actual_td.html(task.time_spent);
+    actual_td.html(displayTime(task.time_spent));
     new_tr.append(actual_td);
 
     container.append(new_tr);
@@ -90,9 +90,7 @@ $(document).ready(function() {
     });
     
     $('#cat-dropdown').change(function() {
-      // alert('Handler for .change() called.');
       var this_dropdown = $(this);
-      // console.log(this_dropdown.val());
       var this_value = this_dropdown.val();
       var input = $('#new_category');
 
@@ -197,6 +195,13 @@ function process_task() {
     
     
     var min = parseInt($("#min").val());
+    if (isNaN(min)) {
+      min = 0;
+    }
+    if (isNaN(hour)) {
+      hour = 0;
+    }
+
     var time_estimate = ((hour * 60 * 60) + min * 60);
     var time_spent = 0;
     var time_chunks = [];
@@ -210,8 +215,6 @@ function process_task() {
     $("#taskname").val("");
     $("#cat-dropdown").val("-1");
     $("#desc").val("");
-  } else {
-    console.log('test');
   }
 }
 
@@ -219,8 +222,6 @@ function drawCategories()
 {
   var c = $("#cat-dropdown");
   c.html("");
-  
-  // $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 
   for(var val in categories) {
       $('<option />', {value: val, text: categories[val].name}).appendTo(c);
