@@ -93,6 +93,13 @@ $(document).ready(function() {
     });
 
     $('#completed').hide();
+
+    $('#close').click(function() {
+      $('#dim-overlay').hide();
+      $('#overlay').hide();
+      $("#add").val("New Task");
+      $("#add").css("background-color", "#C0C0C0");
+    });
   
 });
 

@@ -66,10 +66,11 @@ body {
 }
 
 #add {
+  background-color: #CCC;
   display: block;
   position: absolute;
   width: 100px;
-  height: 30px;
+  height: 25px;
   padding: 0;
 
   border: 1px solid #555;
@@ -312,17 +313,25 @@ h3 {
 }
 
 #top_5_tasks {
-  left: 300px;
-  top: 560px;
+  left: 290px;
+  top: 86%;
+  font-weight: bold;
   position: absolute;
-  background-color: #00C6C5;
+  background-color: #CCC;
   border: 1px solid #555;
   border-radius: 7px;
-  font-size: 18px;
-  font-family: arial;
+  font-size: 14px;
   width: 120px;
   height: 25px;
   -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4); 
   -moz-box-shadow: 0px 1px 3px rgba(23, 69, 88, .5); 
   box-shadow: 0px 1px 3px rgba(23, 69, 88, .5);
+}
+
+#close {
+  background: url('close.png');
+  float: right;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
 }
