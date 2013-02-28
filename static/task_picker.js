@@ -32,7 +32,7 @@ $(document).ready(function() {
        $(this).val() === "start" ? start_timer() : stop_timer(false);
     });
     $('#add').click(function(event) {        
-      if ($('#dim-overlay').is(":visible")) {
+      if ($('#dim-overlay').is(":visible") && ($('#taskname').val() !== "")) {
         $('#dim-overlay').hide();
         $('#overlay').hide();
       } else {
@@ -154,6 +154,8 @@ function process_task() {
     $("#taskname").val("");
     $("#cat-dropdown").val("-1");
     $("#desc").val("");
+  } else {
+    console.log('test');
   }
 }
 
