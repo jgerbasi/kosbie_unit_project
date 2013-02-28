@@ -87,6 +87,35 @@ function get_top_categories()
 }
 
 
+//returns array of the top 5 tasks (by time spent)
+function get_top_tasks()
+{
+  var tasks_copy = tasks.slice(0);
+  tasks_copy.sort(function(a, b) {
+   return b.time_spent - a.time_spent
+   });
+  var reduced_tasks;
+   
+  if (tasks_copy.length >= 5)
+  {
+    tasks_copy.splice(5);
+    reduced_tasks = tasks_copy;
+  }
+  else
+  {
+    tasks_copy.splice(tasks_copy.length);
+    reduced_tasks = tasks_copy;
+  }
+    
+  
+  return reduced_tasks;
+    
+  
+  
+
+}
+
+
 
 
 ///////////

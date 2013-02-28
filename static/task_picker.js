@@ -140,9 +140,8 @@ function process_task() {
     hour = parseInt($("#hour").val());
   
   
-  var min = parseInt($("#min-dropdown").val());
-  var time_estimate = ((hour * 60) + min) * 60;
-  // console.log("time est: " + time_estimate);
+  var min = parseInt($("#min").val());
+  var time_estimate = ((hour * 60 * 60) + min * 60);
   var time_spent = 0;
   var time_chunks = [];
   var completed = false;
@@ -151,7 +150,7 @@ function process_task() {
   $("#add").css("background-color", "#C0C0C0");
   
   $("#hour").val("")
-  $("#min-dropdown").val("")
+  $("#min").val("")
   $("#taskname").val("");
   $("#cat-dropdown").val("-1");
   $("#desc").val("");
