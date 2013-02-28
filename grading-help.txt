@@ -1,0 +1,11 @@
+Group members: Brad Charna(bcharna), Josh Gerbasi(jgerbasi), Marco Talabacu(mtalabac), Emmanuel Ruiz(meruiz)
+
+Required Elements:
+1. Javascript was used to create the dynamic graphing functionality as well as loading the sprite images for the clock. Ex: Graph_picker.js [line 4] 
+2. Canvas was utilized to create the display for the clock as well as for the graphing the selected tasks and the graph axis.  Ex: Clock.js[line 110]
+3. We utilized HTML to create dropdowns, buttons, div overlay, a table for displaying the list of tasks, and we utilized a validation to ensure that users cannot submit a blank task. Ex: index.html [line 31, 32]
+4. We utilized CSS reset, psuedo-selectors, last child was used for, nth child was used for the border of the footer.  Also we made use of hidden divs and shadows to enhance our application.  Ex: reset.css, layout.css [line 141]
+5. DOM manipulation was used to select elements in the HTML page and edit the contents of the elements (or style) and append children to the elements.  Ex: tasks_picker.js [lines 122, 181,186]
+6. jQuery was used for the DOM manipulation and to event handlers. Ex: task_picker.js [line 68] 
+7. AJAX client was used for CRUD functionality of tasks, and categories without having to reload pages. 
+8. AJAX server

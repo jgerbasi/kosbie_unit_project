@@ -2,12 +2,6 @@ var maxTaskTime = 0;
 
 
 function drawGraph() {
-  //Graph Title
-  ctx.fillStyle = "black";
-  ctx.font = (canvas.width *.05)+"px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("Graph Title", canvas.width/2, canvas.height * .1);
-
   //Graph Axis
   ctx.fillStyle = "black";
   ctx.fillRect(canvas.width * .1, canvas.height * .15, 10, canvas.height * .65); // time
@@ -56,7 +50,7 @@ function drawGraph() {
         ctx.fillStyle = "Blue";
         var x_offset = ((leftcanvas + 10) + ((rightcanvas)/(graph_tasks.length))*(i));
         var bar_width = ((rightcanvas)/(5) -10);
-        ctx.fillRect(x_offset, (downcanvas), bar_width, ((this_task.time_spent/maxTaskTime) * (topcanvas - downcanvas)));
+        ctx.fillRect(x_offset, (downcanvas), bar_width, ((parseInt((this_task.time_spent/maxTaskTime)/60)) * (topcanvas - downcanvas)));
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
         ctx.font = canvas.width * .015 + "px Arial";
