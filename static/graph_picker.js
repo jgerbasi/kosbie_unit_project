@@ -2,10 +2,7 @@ var maxTaskTime = 0;
 
 
 function drawGraph() {
-<<<<<<< HEAD
-=======
 
->>>>>>> 84343270eeea5ae09ce5d3ed554d0826b4ad65bd
   //Graph Axis
   ctx.fillStyle = "black";
   ctx.fillRect(canvas.width * .1, canvas.height * .15, 10, canvas.height * .65); // time

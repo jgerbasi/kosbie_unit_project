@@ -222,6 +222,8 @@ function drawCategories()
 {
   var c = $("#cat-dropdown");
   c.html("");
+  
+  $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 
   for(var val in categories) {
       $('<option />', {value: val, text: categories[val].name}).appendTo(c);
