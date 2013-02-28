@@ -96,7 +96,28 @@ app.get("/tasks/:id", function(request, response){
 });
 
 
-// create new task
+// update task
+app.put("/tasks/:id", function(request, response) {
+  // console.log(request.body);
+  var task = {"name": request.body.name,
+              "category_id": request.body.category_id,
+              "description": request.body.description,
+              "time_estimate": request.body.time_estimate,
+              "time_spent": 0,
+              "time_chunks": [], // store time chunks in seconds
+              "completed": JSON.parse(request.body.completed) };
+  var task_id = request.params.id;
+  tasks[task_id] = task;
+  // do server side validation here if want...
+
+  writeFile("tasks.txt", JSON.stringify(tasks));
+  response.send({ 
+    task: task,
+    success: task !== undefined
+  });
+});
+
+// update task
 app.post("/tasks", function(request, response) {
   // console.log(request.body);
   var task = {"name": request.body.name,
@@ -106,7 +127,6 @@ app.post("/tasks", function(request, response) {
               "time_spent": 0,
               "time_chunks": [], // store time chunks in seconds
               "completed": false };
-              
   tasks.push(task);
   // do server side validation here if want...
 

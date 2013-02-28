@@ -131,6 +131,7 @@ function add_task(name, category_id, description, time_estimate, time_spent, tim
 
 
 function edit_task(id, name, category_id, description, time_estimate, time_spent, time_chunks, completed) {
+  console.log("task id to edit = " + id);
   $.ajax({
     type: "put",
     data: {"name": name,
@@ -144,8 +145,8 @@ function edit_task(id, name, category_id, description, time_estimate, time_spent
     success: function(data) {
       if (data.task !== undefined)
       {
+        console.log('test');
         tasks[id] = data.task;
-        refreshDOM();
       }
       
     }
@@ -195,7 +196,6 @@ function add_category(name) {
         categories.push(data.category);
         drawCategories();
         $('#cat-dropdown').val(categories.length - 1);
-        //refreshDOM();
       }
     }
   });
@@ -211,7 +211,6 @@ function edit_category(id, name) {
       if (data.category !== undefined)
       {
         categories[id] = data.category;
-        refreshDOM();
       }
     }
   });

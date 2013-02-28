@@ -32,7 +32,6 @@ body {
 }
 
 .clock {
-  background-image: url('clock.png');
   width: 356px;
   height: 167px;
   margin-left: auto;   
@@ -52,9 +51,10 @@ body {
 }
 
 #start {
-  position: absolute;
-  margin-top: 20px;
   display: inline-block;
+  position: absolute;
+  left: 400px;
+  margin-top: 20px;
   background-color: #00C6C5;
   border: 1px solid #555;
   border-radius: 7px;
@@ -221,4 +221,39 @@ a:nth-child(2) {
   background-color: #FFF;
   font-size: 16px;
   color: #555;
+}
+
+#current-task {
+  line-height: 30px;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  display: none;
+  display: inline-block;
+  position: absolute;
+/*  top: 310px;*/
+  top: 350px;
+  left: 200px;
+  font-size: 18px;
+}
+
+#current-task span {
+  color: #00C6C5;
+  font-weight: bold;
+}
+
+#completed {
+  position: absolute;
+  display: inline-block;
+  left: 200px;
+  margin-top: 20px;
+  background-color: #00C6C5;
+  border: 1px solid #555;
+  border-radius: 7px;
+  font-size: 18px;
+  font-family: arial;
+  width: 100px;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4); 
+  -moz-box-shadow: 0px 1px 3px rgba(23, 69, 88, .5); 
+  box-shadow: 0px 1px 3px rgba(23, 69, 88, .5);
 }

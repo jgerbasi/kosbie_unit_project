@@ -1,6 +1,3 @@
-const SCREEN_WIDTH = 500;
-const SCREEN_HEIGHT = 200;
-
 var canvas;
 var ctx;
 var clock_started;

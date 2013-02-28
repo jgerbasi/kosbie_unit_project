@@ -22,8 +22,12 @@
   <body>
   	<div class="wrapper">
   		<a class="banner" href="/static/index.html"></a>
-      <canvas id="clockCanvas" width="500" height="200"></canvas> 
+      <div class="clock">
+        <canvas id="clockCanvas" width="356" height="167"></canvas> 
+      </div>
+      <input type="button" id="completed" value="completed"/>
       <select id="task-dropdown"></select>
+      <div id="current-task"></div>
       <input type="button" id="start" value="start"/>
       <div id="dim-overlay"></div>
       <div id="overlay">
@@ -52,7 +56,7 @@
       <div class="footer">
         <a href="/static/index.html">Home</a>
         <a href="/static/tasks.html">Tasks List</a>
-        <a href="/static/graph_picker.html">Graph Picker</a>
+        <a href="/static/graph_picker.html">Graph</a>
       </div>
     </div>
 

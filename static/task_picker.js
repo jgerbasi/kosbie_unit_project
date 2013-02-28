@@ -1,3 +1,5 @@
+var current_task = -1;
+
 function drawTasksDropDown()
 {
   var t = $("#task-dropdown");
@@ -7,14 +9,15 @@ function drawTasksDropDown()
   $('<option />', {value: -1, text: 'Select a task ...'}).appendTo(t);
 
   for(var val in tasks) {
+    if(!tasks[val].completed) {
       $('<option />', {value: val, text: tasks[val].name}).appendTo(t);
+    }
   }
 }
 
 function displayAllTasks()
 {
   var container = $("#tasks_container");
-  console.log(tasks);
   for(var task_index in tasks) {
     var new_div = $("<div>").html(tasks[task_index].name)
     container.append(new_div);
@@ -26,7 +29,7 @@ function displayAllTasks()
 
 $(document).ready(function() {
     $('#start').click(function() {
-       $(this).val() === "start" ? start_timer() : stop_timer();
+       $(this).val() === "start" ? start_timer() : stop_timer(false);
     });
     $('#add').click(function(event) {        
       if ($('#dim-overlay').is(":visible")) {
@@ -82,21 +85,44 @@ $(document).ready(function() {
     //     $("#dim-overlay").hide();
     //   }
     // });
+
+    $('#completed').click(function() {
+       stop_timer(true);
+       drawTasksDropDown();
+       alert("You have completed task: " + current_task.name);
+    });
+
+    $('#completed').hide();
   
 });
 
 function start_timer() {
-    $('#start').val("stop");
-    $('#start').css("background-color", "#D23439");
+    if ($('#task-dropdown').val() !== "-1") {
+      $('#start').val("stop");
+      $('#start').css("background-color", "#D23439");
+      $('#task-dropdown').hide();
+      $('#current-task').show();
+      $('#completed').show();
+      current_task = tasks[$('#task-dropdown').val()];
+      $('#current-task').html("Current Task ->\t" + "<span>" + current_task.name + "</span> </br> Previous Time Spent ->\t" + "<span>" + current_task.time_spent + " s </span> </br> Sessions ->\t" + "<span>" + current_task.time_chunks.length + "</span>");
+      startClock();
+    }
     // do start
-    startClock();
 }
 
-function stop_timer() {
+function stop_timer(completed) {
     $('#start').val("start");
     $('#start').css("background-color", "#00C6C5");
     // do stop
+    $('#current-task').hide();
+    $('#completed').hide();
+    $('#task-dropdown').show();
     var time = stopClock();
+
+    current_task.time_spent += time;
+    current_task.completed = completed;
+    current_task.time_chunks.push(time);
+    edit_task($('#task-dropdown').val(), current_task.name, current_task.category_id, current_task.description, current_task.time_estimate, current_task.time_spent, current_task.time_chunks, current_task.completed);
 }
 
 
@@ -115,10 +141,10 @@ function process_task() {
   
   
   var min = parseInt($("#min-dropdown").val());
-  var time_estimate = (hour * 60) + min;
+  var time_estimate = ((hour * 60) + min) * 60;
   // console.log("time est: " + time_estimate);
-  var time_spent = undefined;
-  var time_chunks = undefined;
+  var time_spent = 0;
+  var time_chunks = [];
   var completed = false;
   add_task(name, category_id, description, time_estimate, time_spent, time_chunks, completed);
   $("#add").val("Add Task");
@@ -140,7 +166,6 @@ function drawCategories()
   $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 
   for(var val in categories) {
-      console.log(val);
       $('<option />', {value: val, text: categories[val].name}).appendTo(c);
   }
   $('<option />', {value: "new", text: "New category..."}).appendTo(c);
