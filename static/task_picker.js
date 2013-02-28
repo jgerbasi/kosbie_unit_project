@@ -17,12 +17,54 @@ function drawTasksDropDown()
 
 function displayAllTasks()
 {
-  var container = $("#tasks_container");
+  var container = $("#task-list-table");
+  container.html("");
+  var header_tr = $('<tr>');
+
+  var name_head = $('<th>');
+  name_head.html("Name");
+  header_tr.append(name_head);
+
+  var category_head = $('<th>');
+  category_head.html("Category");
+  header_tr.append(category_head);
+
+  var est_head = $('<th>');
+  est_head.html("Est. Time");
+  header_tr.append(est_head);
+
+  var actual_head = $('<th>');
+  actual_head.html("Actual Time");
+  header_tr.append(actual_head);
+
+  container.append(header_tr);
+
+  console.log(container);
   for(var task_index in tasks) {
-    var new_div = $("<div>").html(tasks[task_index].name)
-    container.append(new_div);
+    task = tasks[task_index];
+    var new_tr = $('<tr>');
+
+    var name_td = $('<td>');
+    name_td.html(task.name);
+    new_tr.append(name_td);
+
+    var category_td = $('<td>');
+    category_td.html(categories[task.category_id].name);
+    new_tr.append(category_td);
+
+    var est_td = $('<td>');
+    est_td.html(task.time_estimate);
+    new_tr.append(est_td);
+
+    var actual_td = $('<td>');
+    actual_td.html(task.time_spent);
+    new_tr.append(actual_td);
+
+    container.append(new_tr);
   }
-  
+}
+
+function display() {
 
 }
 
@@ -111,7 +153,7 @@ function start_timer() {
       $('#current-task').show();
       $('#completed').show();
       current_task = tasks[$('#task-dropdown').val()];
-      $('#current-task').html("Current Task ->\t" + "<span>" + current_task.name + "</span> </br> Previous Time Spent ->\t" + "<span>" + current_task.time_spent + " s </span> </br> Sessions ->\t" + "<span>" + current_task.time_chunks.length + "</span>");
+      $('#current-task').html("Current Task ->\t" + "<span>" + current_task.name + "</span> </br> Previous Time Spent ->\t" + "<span>" + current_task.time_spent + " s </span> </br> Sessions ->\t" + "<span>" + (current_task.time_chunks.length + 1)+ "</span>");
       startClock();
     }
     // do start
@@ -171,7 +213,7 @@ function drawCategories()
   var c = $("#cat-dropdown");
   c.html("");
   
-  $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
+  // $('<option />', {value: -1, text: 'Select a category ...'}).appendTo(c);
 
   for(var val in categories) {
       $('<option />', {value: val, text: categories[val].name}).appendTo(c);

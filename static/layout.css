@@ -335,3 +335,25 @@ h3 {
   width: 40px;
   height: 40px;
 }
+
+h2 {
+  display: inline;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 85px;
+}
+
+table th {
+  font-size: 24px;
+  font-weight: bold;
+  width: 200px;
+}
+
+table tr {
+  width: 200px;
+}
+
+table td {
+  text-align: center;
+  padding: 10px;
+}
