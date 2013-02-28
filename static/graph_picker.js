@@ -2,11 +2,6 @@ var maxTaskTime = 0;
 
 
 function drawGraph() {
-  //Graph Title
-  ctx.fillStyle = "black";
-  ctx.font = (canvas.width *.05)+"px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("Graph Title", canvas.width/2, canvas.height * .1);
 
   //Graph Axis
   ctx.fillStyle = "black";
@@ -24,7 +19,7 @@ function drawGraph() {
   ctx.rotate(-Math.PI/2);
   ctx.font = canvas.width*.02 +"px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("Time (min)", -canvas.width *.3, canvas.height *.05);
+  ctx.fillText("Time (min)", -canvas.width *.2, canvas.height *.05);
   ctx.restore();
  
   // Bar Graphs values and names
@@ -89,8 +84,6 @@ function calculateMax() {
  
   
 function sizeCanvas(){       // canvas can be resized at any point in game
-  ctx.canvas.width  = window.innerWidth * .4;
-  ctx.canvas.height = Math.round(500 * .5); //sets ratio
 
   redrawGraph();
 } 
@@ -144,9 +137,11 @@ function run() {
   ctx = canvas.getContext("2d");
 
   // make canvas focusable, then give it focus!
-  window.addEventListener('resize', sizeCanvas);
+  ctx.canvas.width  = 570;
+  ctx.canvas.height = 250; //sets ratio
+  
   canvas.setAttribute('tabindex','0');
-  sizeCanvas();
+  redrawGraph();
   
 }
 
